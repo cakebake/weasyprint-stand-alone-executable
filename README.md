@@ -1,5 +1,7 @@
 # WIP: weasyprint-stand-alone-executable
 
+[![Build Status](https://travis-ci.org/cakebake/weasyprint-stand-alone-executable.svg?branch=master)](https://travis-ci.org/cakebake/weasyprint-stand-alone-executable)
+
 Stand Alone Executable from WeasyPrint - **work in progress**.
 
 ## Todo
