@@ -1,0 +1,21 @@
+matrix:
+  allow_failures:
+    - os: osx
+  include:
+    - os: linux
+      dist: trusty
+      language: python
+      python: 3.6
+      services: docker
+      env: DOCKER_IMAGE=quay.io/pypa/manylinux1_x86_64
+    - os: linux
+      dist: trusty
+      language: python
+      python: 3.6
+      services: docker
+      env: DOCKER_IMAGE=quay.io/pypa/manylinux1_i686
+           PRE_CMD=linux32
+    - os: osx
+      language: generic
+script:
+  - source ./travis/dist_${TRAVIS_OS_NAME}.sh
