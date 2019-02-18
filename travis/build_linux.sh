@@ -12,14 +12,20 @@ apt-get update -qq && apt-get install -qq -y \
   libpangocairo-1.0-0 \
   libgdk-pixbuf2.0-0 \
   libffi-dev \
-  shared-mime-info
+  shared-mime-info \
+  binutils \
+  patchelf \
+  libjpeg9-dev \
+  libpng-dev
 
 pip3 install --upgrade --no-cache-dir \
   'WeasyPrint==44' \
-  pyinstaller
+  'pyinstaller==3.4' \
+  'staticx==0.6.0'
 
 weasyprint --version
 pyinstaller --version
+staticx --version
 
 cd /tmp
 
@@ -33,4 +39,8 @@ pyinstaller /usr/local/bin/weasyprint \
   --add-data '/usr/local/lib/python3.7/dist-packages/weasyprint/VERSION:.' \
   --add-data '/usr/local/lib/python3.7/dist-packages/cairocffi/VERSION:cairocffi'
 
-cp /tmp/dist/weasyprint /workdir/dist
+# temp patch staticx because of libjpeg not found
+sed -i 's/# Some shared objs might have no DT_NEEDED tags (see issue #67)/continue/g' \
+  /usr/local/lib/python3.7/dist-packages/staticx/elf.py
+
+staticx /tmp/dist/weasyprint /workdir/dist/weasyprint
