@@ -34,4 +34,3 @@ pyinstaller /usr/local/bin/weasyprint \
   --add-data '/usr/local/lib/python3.7/dist-packages/cairocffi/VERSION:cairocffi'
 
 cp /tmp/dist/weasyprint /workdir/dist
-chown $FINAL_USER:$FINAL_GROUP /workdir/dist/weasyprint

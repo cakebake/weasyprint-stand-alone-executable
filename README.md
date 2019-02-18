@@ -19,8 +19,6 @@ Local build_linux for testing
 ```bash
 docker run --rm \
   -v $PWD:/workdir \
-  -e "FINAL_USER=$UID" \
-  -e "FINAL_GROUP=$GID" \
   ubuntu:19.04 \
   /workdir/travis/build_linux.sh
 ```
