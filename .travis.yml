@@ -4,7 +4,7 @@ matrix:
   include:
     - os: linux
       dist: trusty
-      language: minimal
+      language: generic
       services: docker
       env: DOCKER_IMAGE=ubuntu:19.04
     - os: osx
