@@ -20,12 +20,10 @@ apt-get update -qq && apt-get install -qq -y \
 
 pip3 install --upgrade --no-cache-dir \
   'WeasyPrint==44' \
-  'pyinstaller==3.4' \
-  'staticx==0.6.0'
+  'pyinstaller==3.4'
 
 weasyprint --version
 pyinstaller --version
-staticx --version
 
 cd /tmp
 
@@ -40,7 +38,11 @@ pyinstaller /usr/local/bin/weasyprint \
   --add-data '/usr/local/lib/python3.7/dist-packages/cairocffi/VERSION:cairocffi'
 
 # temp patch staticx because of libjpeg not found
+apt-get install -qq -y scons musl-tools
+CC=/usr/bin/musl-gcc pip3 install https://github.com/JonathonReinhart/staticx/archive/61-fix-rpath-origin.zip
 sed -i 's/# Some shared objs might have no DT_NEEDED tags (see issue #67)/print("ldd, unexpected lin in ldd output: " + line)\n            continue/g' \
   /usr/local/lib/python3.7/dist-packages/staticx/elf.py
+
+staticx --version
 
 staticx /tmp/dist/weasyprint /workdir/dist/weasyprint
