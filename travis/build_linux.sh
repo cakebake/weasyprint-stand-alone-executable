@@ -40,7 +40,7 @@ pyinstaller /usr/local/bin/weasyprint \
   --add-data '/usr/local/lib/python3.7/dist-packages/cairocffi/VERSION:cairocffi'
 
 # temp patch staticx because of libjpeg not found
-sed -i 's/# Some shared objs might have no DT_NEEDED tags (see issue #67)/print("ldd, unexpected lin in ldd output: " + line)\ncontinue/g' \
+sed -i 's/# Some shared objs might have no DT_NEEDED tags (see issue #67)/print("ldd, unexpected lin in ldd output: " + line)\n            continue/g' \
   /usr/local/lib/python3.7/dist-packages/staticx/elf.py
 
 staticx /tmp/dist/weasyprint /workdir/dist/weasyprint
