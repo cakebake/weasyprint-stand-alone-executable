@@ -27,6 +27,9 @@ pyinstaller --version
 
 cd /tmp
 
+PYTHONHASHSEED=123456
+export PYTHONHASHSEED
+
 pyinstaller /usr/local/bin/weasyprint \
   --name weasyprint \
   --clean \
