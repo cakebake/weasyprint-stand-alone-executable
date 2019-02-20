@@ -12,3 +12,5 @@ matrix:
 script:
   - source ./travis/dist_${TRAVIS_OS_NAME}.sh
   - ./dist/weasyprint --version
+  - ./dist/weasyprint https://weasyprint.org/ weasyprint.pdf
+  - stat weasyprint.pdf
