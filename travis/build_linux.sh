@@ -19,7 +19,7 @@ apt-get update -qq && apt-get install -qq -y \
   libpng-dev
 
 pip3 install --upgrade --no-cache-dir \
-  'WeasyPrint==44' \
+  'WeasyPrint==45' \
   'staticx==0.6.0' \
   'pyinstaller==3.4'
 
