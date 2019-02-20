@@ -37,7 +37,11 @@ pyinstaller /usr/local/bin/weasyprint \
   --add-data '/usr/local/lib/python3.7/dist-packages/weasyprint/css/html5_ph.css:css' \
   --add-data '/usr/local/lib/python3.7/dist-packages/weasyprint/css/html5_ua.css:css' \
   --add-data '/usr/local/lib/python3.7/dist-packages/weasyprint/VERSION:.' \
-  --add-data '/usr/local/lib/python3.7/dist-packages/cairocffi/VERSION:cairocffi'
+  --add-data '/usr/local/lib/python3.7/dist-packages/cairocffi/VERSION:cairocffi' \
+  --add-binary '/lib/x86_64-linux-gnu/libcairo.so.2.11600.0:.' \
+  --add-binary '/lib/x86_64-linux-gnu/libpango-1.0.so.0.4200.3:.' \
+  --add-binary '/lib/x86_64-linux-gnu/libpangocairo-1.0.so.0.4200.3:.' \
+  --add-binary '/lib/x86_64-linux-gnu/libpangoft2-1.0.so.0.4200.3:.'
 
 # temp fix because libs of executable not found by staticx
 sed -i 's/# Some shared objs might have no DT_NEEDED tags (see issue #67)/print("ldd, unexpected lin in ldd output: " + line)\n            continue/g' \
