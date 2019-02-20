@@ -5,10 +5,10 @@ matrix:
     - os: linux
       dist: trusty
       language: generic
-      services: minimal
+      services: docker
       env: DOCKER_IMAGE=ubuntu:19.04
     - os: osx
-      language: minimal
+      language: generic
 script:
   - source ./travis/dist_${TRAVIS_OS_NAME}.sh
   - ./dist/weasyprint --version
