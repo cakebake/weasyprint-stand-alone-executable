@@ -30,22 +30,17 @@ pyinstaller --version
 cd /tmp
 
 pyinstaller /usr/local/bin/weasyprint \
-  --name weasyprint \
+  --name weasyprint-stand-alone-executable \
   --clean \
-  --onefile \
+  --onedir \
   --add-data '/usr/local/lib/python3.7/dist-packages/pyphen/dictionaries:pyphen/dictionaries' \
   --add-data '/usr/local/lib/python3.7/dist-packages/weasyprint/css/html5_ph.css:css' \
   --add-data '/usr/local/lib/python3.7/dist-packages/weasyprint/css/html5_ua.css:css' \
-  --add-data '/usr/local/lib/python3.7/dist-packages/weasyprint/VERSION:.' \
-  --add-data '/usr/local/lib/python3.7/dist-packages/cairocffi/VERSION:cairocffi' \
   --add-binary '/lib/x86_64-linux-gnu/libcairo.so.2.11600.0:.' \
   --add-binary '/lib/x86_64-linux-gnu/libpango-1.0.so.0.4200.3:.' \
   --add-binary '/lib/x86_64-linux-gnu/libpangocairo-1.0.so.0.4200.3:.' \
   --add-binary '/lib/x86_64-linux-gnu/libpangoft2-1.0.so.0.4200.3:.'
 
-# temp fix because libs of executable not found by staticx
-sed -i 's/# Some shared objs might have no DT_NEEDED tags (see issue #67)/print("ldd, unexpected lin in ldd output: " + line)\n            continue/g' \
-  /usr/local/lib/python3.7/dist-packages/staticx/elf.py
-cp -vf /workdir/travis/bin/* /lib/x86_64-linux-gnu
-
-staticx /tmp/dist/weasyprint /workdir/dist/weasyprint
+staticx --loglevel DEBUG \
+  /tmp/dist/weasyprint-stand-alone-executable/weasyprint-stand-alone-executable \
+  /workdir/dist/weasyprint
