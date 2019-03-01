@@ -10,5 +10,4 @@ matrix:
       language: generic
 script:
   - source ./travis/dist_${TRAVIS_OS_NAME}.sh
-  - source ./travis/test_${TRAVIS_OS_NAME}.sh
   - stat ./dist/weasyprint
