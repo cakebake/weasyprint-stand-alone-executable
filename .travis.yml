@@ -14,3 +14,7 @@ script:
   - ./dist/weasyprint --version
   - ./dist/weasyprint https://weasyprint.org/ weasyprint.pdf
   - stat weasyprint.pdf
+addons:
+  apt:
+    packages:
+    - ttf-dejavu
