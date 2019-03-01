@@ -16,7 +16,8 @@ apt-get update -qq && apt-get install -qq -y \
   binutils \
   patchelf \
   libjpeg9-dev \
-  libpng-dev
+  libpng-dev \
+  vim
 
 pip3 install --upgrade --no-cache-dir \
   'WeasyPrint==45' \
@@ -26,6 +27,9 @@ pip3 install --upgrade --no-cache-dir \
 weasyprint --version
 staticx --version
 pyinstaller --version
+
+# TEMP FIX :: patch weasyprint because of ssl error in final executable
+sed -i -e 's/import sys/import sys\nimport ssl\nssl._create_default_https_context = ssl._create_unverified_context\n/g' /usr/local/bin/weasyprint
 
 cd /tmp
 
