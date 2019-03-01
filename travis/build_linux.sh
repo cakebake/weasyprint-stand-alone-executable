@@ -30,17 +30,28 @@ pyinstaller --version
 cd /tmp
 
 pyinstaller /usr/local/bin/weasyprint \
-  --name weasyprint-stand-alone-executable \
+  --name wsae-onedir \
   --clean \
-  --onedir \
+  --onedir
+
+cp -vf /tmp/dist/wsae-onedir/lib* /lib/x86_64-linux-gnu
+
+pyinstaller /usr/local/bin/weasyprint \
+  --name wsae-onefile \
+  --clean \
+  --onefile \
   --add-data '/usr/local/lib/python3.7/dist-packages/pyphen/dictionaries:pyphen/dictionaries' \
   --add-data '/usr/local/lib/python3.7/dist-packages/weasyprint/css/html5_ph.css:css' \
   --add-data '/usr/local/lib/python3.7/dist-packages/weasyprint/css/html5_ua.css:css' \
+  --add-data '/usr/local/lib/python3.7/dist-packages/weasyprint/VERSION:.' \
+  --add-data '/usr/local/lib/python3.7/dist-packages/cairocffi/VERSION:cairocffi' \
   --add-binary '/lib/x86_64-linux-gnu/libcairo.so.2.11600.0:.' \
   --add-binary '/lib/x86_64-linux-gnu/libpango-1.0.so.0.4200.3:.' \
   --add-binary '/lib/x86_64-linux-gnu/libpangocairo-1.0.so.0.4200.3:.' \
   --add-binary '/lib/x86_64-linux-gnu/libpangoft2-1.0.so.0.4200.3:.'
 
-staticx --loglevel DEBUG \
-  /tmp/dist/weasyprint-stand-alone-executable/weasyprint-stand-alone-executable \
+cat /tmp/build/wsae-onefile/warn-wsae-onefile.txt
+
+staticx --loglevel INFO \
+  /tmp/dist/wsae-onefile \
   /workdir/dist/weasyprint
