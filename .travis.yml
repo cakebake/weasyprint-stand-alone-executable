@@ -6,23 +6,9 @@ matrix:
       dist: trusty
       language: generic
       services: docker
-      env: DOCKER_IMAGE=ubuntu:19.04
     - os: osx
       language: generic
 script:
   - source ./travis/dist_${TRAVIS_OS_NAME}.sh
-  - ./dist/weasyprint --version
-  - ./dist/weasyprint https://weasyprint.org/ weasyprint.pdf
-  - stat weasyprint.pdf
-addons:
-  apt:
-    packages:
-    - ttf-dejavu
-deploy:
-  provider: releases
-  api_key: "GITHUB OAUTH TOKEN"
-  file: "FILE TO UPLOAD"
-  skip_cleanup: true
-  on:
-    tags: true
-sudo: true
+  - source ./travis/test_${TRAVIS_OS_NAME}.sh
+  - stat ./dist/weasyprint
