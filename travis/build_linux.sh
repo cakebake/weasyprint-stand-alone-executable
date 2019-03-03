@@ -15,13 +15,14 @@ apt-get update -qq && apt-get install -qq -y \
   shared-mime-info \
   binutils \
   patchelf \
+  scons \
   libjpeg9-dev \
   libpng-dev \
   vim
 
 pip3 install --upgrade --no-cache-dir \
   'WeasyPrint==45' \
-  'staticx==0.6.0' \
+  'https://github.com/JonathonReinhart/staticx/archive/master.zip' \
   'https://github.com/pyinstaller/pyinstaller/archive/develop.zip'
 
 weasyprint --version
