@@ -22,7 +22,7 @@ apt-get update -qq && apt-get install -qq -y \
 pip3 install --upgrade --no-cache-dir \
   'WeasyPrint==45' \
   'staticx==0.6.0' \
-  'pyinstaller==3.4'
+  'https://github.com/pyinstaller/pyinstaller/archive/develop.zip'
 
 weasyprint --version
 staticx --version
@@ -54,8 +54,14 @@ pyinstaller /usr/local/bin/weasyprint \
   --add-binary '/lib/x86_64-linux-gnu/libpangocairo-1.0.so.0.4200.3:.' \
   --add-binary '/lib/x86_64-linux-gnu/libpangoft2-1.0.so.0.4200.3:.'
 
+stat /tmp/dist/wsae-onefile
 cat /tmp/build/wsae-onefile/warn-wsae-onefile.txt
+/tmp/dist/wsae-onefile --version
+du -h /tmp/dist/wsae-onefile
 
 staticx --loglevel INFO \
   /tmp/dist/wsae-onefile \
   /workdir/dist/weasyprint
+
+stat /workdir/dist/weasyprint
+du -h /workdir/dist/weasyprint
