@@ -22,8 +22,8 @@ apt-get update -qq && apt-get install -qq -y \
 
 pip3 install --upgrade --no-cache-dir \
   'WeasyPrint==45' \
-  'https://github.com/JonathonReinhart/staticx/archive/master.zip' \
-  'https://github.com/pyinstaller/pyinstaller/archive/develop.zip'
+  'staticx==0.7.0' \
+  'PyInstaller==3.4'
 
 weasyprint --version
 staticx --version
@@ -35,13 +35,6 @@ sed -i -e 's/import sys/import sys\nimport ssl\nssl._create_default_https_contex
 cd /tmp
 
 pyinstaller /usr/local/bin/weasyprint \
-  --name wsae-onedir \
-  --clean \
-  --onedir
-
-cp -vf /tmp/dist/wsae-onedir/lib* /lib/x86_64-linux-gnu
-
-pyinstaller /usr/local/bin/weasyprint \
   --name wsae-onefile \
   --clean \
   --onefile \
@@ -50,6 +43,7 @@ pyinstaller /usr/local/bin/weasyprint \
   --add-data '/usr/local/lib/python3.7/dist-packages/weasyprint/css/html5_ua.css:css' \
   --add-data '/usr/local/lib/python3.7/dist-packages/weasyprint/VERSION:.' \
   --add-data '/usr/local/lib/python3.7/dist-packages/cairocffi/VERSION:cairocffi' \
+  --add-data '/usr/local/lib/python3.7/dist-packages/tinycss2/VERSION:tinycss2' \
   --add-binary '/lib/x86_64-linux-gnu/libcairo.so.2.11600.0:.' \
   --add-binary '/lib/x86_64-linux-gnu/libpango-1.0.so.0.4200.3:.' \
   --add-binary '/lib/x86_64-linux-gnu/libpangocairo-1.0.so.0.4200.3:.' \
