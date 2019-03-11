@@ -19,10 +19,10 @@ pyinstaller /usr/local/bin/weasyprint \
   --add-data '/usr/local/lib/python3.7/dist-packages/weasyprint/VERSION:.' \
   --add-data '/usr/local/lib/python3.7/dist-packages/cairocffi/VERSION:cairocffi' \
   --add-data '/usr/local/lib/python3.7/dist-packages/tinycss2/VERSION:tinycss2' \
-  --add-binary '/lib/x86_64-linux-gnu/libcairo.so.2.11600.0:.' \
-  --add-binary '/lib/x86_64-linux-gnu/libpango-1.0.so.0.4200.3:.' \
-  --add-binary '/lib/x86_64-linux-gnu/libpangocairo-1.0.so.0.4200.3:.' \
-  --add-binary '/lib/x86_64-linux-gnu/libpangoft2-1.0.so.0.4200.3:.'
+  --add-binary '/lib/x86_64-linux-gnu/libcairo.so.2:.' \
+  --add-binary '/lib/x86_64-linux-gnu/libpango-1.0.so.0:.' \
+  --add-binary '/lib/x86_64-linux-gnu/libpangocairo-1.0.so.0:.' \
+  --add-binary '/lib/x86_64-linux-gnu/libpangoft2-1.0.so.0:.'
 
 stat /tmp/dist/wsae-onefile
 cat /tmp/build/wsae-onefile/warn-wsae-onefile.txt

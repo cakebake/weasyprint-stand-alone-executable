@@ -37,5 +37,13 @@ docker run --rm \
 ```
 
 ```bash
+docker run --rm \
+  -u $UID:$GID \
+  -v $PWD:/workdir \
+  ubuntu:16.04 \
+  /workdir/travis/linux/test.sh
+```
+
+```bash
 ./dist/weasyprint https://weasyprint.org/ dist/weasyprint.pdf
 ```
