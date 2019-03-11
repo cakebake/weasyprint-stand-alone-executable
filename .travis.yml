@@ -6,8 +6,11 @@ matrix:
       dist: trusty
       language: generic
       services: docker
+      env: WEASYPRINT_VERSION=45
+           STATICX_VERSION=0.7.0
+           PYINSTALLER_VERSION=3.4
     - os: osx
       language: generic
 script:
-  - source ./travis/dist_${TRAVIS_OS_NAME}.sh
+  - source ./travis/${TRAVIS_OS_NAME}/dist.sh
   - stat ./dist/weasyprint
