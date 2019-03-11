@@ -58,5 +58,7 @@ staticx --loglevel INFO \
   /tmp/dist/wsae-onefile \
   /workdir/dist/weasyprint
 
+chown $HOST_OWNER_UID:$HOST_OWNER_GID /workdir/dist/weasyprint
+
 stat /workdir/dist/weasyprint
 du -h /workdir/dist/weasyprint
