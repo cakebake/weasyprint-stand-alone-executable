@@ -22,7 +22,8 @@ pyinstaller /usr/local/bin/weasyprint \
   --add-binary '/lib/x86_64-linux-gnu/libcairo.so.2:.' \
   --add-binary '/lib/x86_64-linux-gnu/libpango-1.0.so.0:.' \
   --add-binary '/lib/x86_64-linux-gnu/libpangocairo-1.0.so.0:.' \
-  --add-binary '/lib/x86_64-linux-gnu/libpangoft2-1.0.so.0:.'
+  --add-binary '/lib/x86_64-linux-gnu/libpangoft2-1.0.so.0:.' \
+  --add-binary '/lib/x86_64-linux-gnu/libgobject-2.0.so.0:.'
 
 stat /tmp/dist/wsae-onefile
 cat /tmp/build/wsae-onefile/warn-wsae-onefile.txt
@@ -30,6 +31,7 @@ cat /tmp/build/wsae-onefile/warn-wsae-onefile.txt
 du -h /tmp/dist/wsae-onefile
 
 staticx --loglevel INFO \
+  -l /lib/x86_64-linux-gnu/libgobject-2.0.so.0 \
   /tmp/dist/wsae-onefile \
   /workdir/dist/weasyprint
 
